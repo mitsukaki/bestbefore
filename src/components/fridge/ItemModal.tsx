@@ -6,16 +6,17 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal';
-import { Button } from '@chakra-ui/react';
+import { Button, Stack } from '@chakra-ui/react';
 import FormInput from 'components/global/FormInput';
 
 interface ItemModalProps {
   action: 'add' | 'edit';
   isOpen: boolean;
+  isLoading: boolean;
   onClose: () => void;
 }
 
-const ItemModal = ({ action, isOpen, onClose }: ItemModalProps) => {
+const ItemModal = ({ action, isOpen, isLoading, onClose }: ItemModalProps) => {
   const isAdd = action === 'add';
 
   return (
@@ -24,12 +25,23 @@ const ItemModal = ({ action, isOpen, onClose }: ItemModalProps) => {
       <ModalContent textAlign="center" mx={['4', '0']}>
         <ModalHeader>{`${isAdd ? 'Add' : 'Edit'} Item`}</ModalHeader>
         <ModalBody>
-          <FormInput name="name" label="Name" />
-          <FormInput name="expiry" label="Expiry Date" type="date" />
-          <FormInput name="quantity" label="Quantity" type="number" />
+          <Stack spacing="4">
+            <FormInput name="name" label="Name" />
+            <FormInput name="quantity" label="Quantity" type="number" />
+            <FormInput name="expiry" label="Expiry Date" type="date" />
+          </Stack>
         </ModalBody>
         <ModalFooter>
-          <Button bg="green.500">{isAdd ? 'Create' : 'Save changes'}</Button>
+          <Button
+            mt="2"
+            w="100%"
+            colorScheme="green"
+            bg="green.500"
+            color="white"
+            isLoading={isLoading}
+          >
+            {isAdd ? 'Add' : 'Save changes'}
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

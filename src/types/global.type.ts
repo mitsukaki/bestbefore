@@ -2,6 +2,7 @@ export enum Routes {
   home = '/',
   login = '/login',
   signUp = '/sign-up',
+  aboutUs = '/about-us',
 }
 
 export interface APIError {

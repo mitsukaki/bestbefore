@@ -13,6 +13,7 @@ import useAuth from 'hooks/useAuth';
 import LoginPage from 'pages/login';
 import SignUpPage from 'pages/signup';
 import Layout from 'components/global/Layout';
+import AboutPage from 'pages/about';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -43,6 +44,7 @@ const App = () => {
           <Route path={Routes.home} element={<HomePage />} />
           <Route path={Routes.login} element={<LoginPage />} />
           <Route path={Routes.signUp} element={<SignUpPage />} />
+          <Route path={Routes.aboutUs} element={<AboutPage />} />
         </BrowserRoutes>
       </Layout>
     </ChakraProvider>

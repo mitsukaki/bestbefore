@@ -32,6 +32,8 @@ const Header = () => {
             <AuthButton type="signUp" />
           </>
         )}
+
+        <Link to={Routes.aboutUs}>About Us</Link>
       </Stack>
     </HStack>
   );
