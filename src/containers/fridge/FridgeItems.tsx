@@ -27,7 +27,7 @@ const FridgeItemsContainer = () => {
       {isLoading ? (
         <Spinner colorScheme="green" />
       ) : (
-        <FridgeItemsTable data={fridges[0]?.items} />
+        <FridgeItemsTable data={fridges[0]?.items || []} />
       )}
     </>
   );
