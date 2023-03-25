@@ -12,6 +12,12 @@ function AboutUs() {
           Our team really enjoys food to the point where we waste nothing, and
           we want to give those same emotions to you!
         </text>
+        <Image
+          src="team.jpg"
+          boxSize="400px"
+          margin="auto"
+          display="block"
+        ></Image>
       </CardBody>
     </Card>
   );

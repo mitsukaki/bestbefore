@@ -11,7 +11,7 @@ const AboutPage = () => {
       <SimpleGrid
         columns={2}
         spacing="auto"
-        padding="4em"
+        padding="2em"
         display="flex"
         align-items="center"
         justify-content="center"

@@ -15,8 +15,8 @@ function AboutApp() {
         <Image
           src="fridge.jpg"
           boxSize="400px"
-          justifyContent="center"
-          display="center"
+          margin="auto"
+          display="block"
         ></Image>
       </CardBody>
     </Card>
