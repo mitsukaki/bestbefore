@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Spinner } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 import { updateFridgeItems } from 'redux/slices/fridge';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { useLazyFridgeItemsQuery } from 'redux/services/fridge';
@@ -25,7 +25,9 @@ const FridgeItemsContainer = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner colorScheme="green" />
+        <Box textAlign="center">
+          <Spinner color="green.500" />
+        </Box>
       ) : (
         <FridgeItemsTable data={fridges[0]?.items || []} />
       )}

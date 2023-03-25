@@ -19,7 +19,7 @@ const Header = () => {
   const logo = useColorModeValue(LogoLight, LogoDark);
 
   return (
-    <HStack h="80px" p="8" justify="space-between">
+    <HStack h="90px" p="8" justify="space-between">
       <Heading>
         <Link to={Routes.home}>{<Image src={logo} w="125px" h="61px" />}</Link>
       </Heading>

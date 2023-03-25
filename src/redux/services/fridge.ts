@@ -34,6 +34,14 @@ const fridgeApi = createApi({
         method: 'DELETE',
       }),
     }),
+    uploadReceipt: builder.mutation<FridgeItemsResponse, FormData>({
+      query: (body) => ({
+        url: `/receipt`,
+        body,
+        method: 'POST',
+        'Content-Type': 'multipart/form-data',
+      }),
+    }),
   }),
 });
 
@@ -41,6 +49,7 @@ export const {
   useLazyFridgeItemsQuery,
   useUpsertFridgeItemsMutation,
   useDeleteFridgeItemsMutation,
+  useUploadReceiptMutation,
 } = fridgeApi;
 
 export default fridgeApi;

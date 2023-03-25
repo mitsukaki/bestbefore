@@ -68,7 +68,7 @@ const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
     );
 
   return (
-    <TableContainer w={['100%', '85%', '75%']} mx="auto">
+    <TableContainer>
       <Table variant="striped" colorScheme="green" {...getTableProps()}>
         <Thead>
           {headerGroups?.map((headerGroup) => (
