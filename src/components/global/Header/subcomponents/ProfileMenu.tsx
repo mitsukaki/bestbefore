@@ -6,9 +6,9 @@ import {
   MenuList,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Routes } from 'types/global.type';
-import { useLogoutMutation } from 'redux/services/auth';
+// import { useLogoutMutation } from 'redux/services/auth';
 import { LogoutIcon, UserIcon } from 'components/global/CustomIcons';
 import useStorage from 'hooks/useStorage';
 
@@ -33,7 +33,7 @@ const ProfileMenu = () => {
   return (
     <Menu>
       <MenuButton as={IconButton} rounded="full">
-        <UserIcon color="white" />
+        <UserIcon />
       </MenuButton>
 
       <MenuList>
