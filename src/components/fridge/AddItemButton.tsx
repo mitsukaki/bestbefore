@@ -1,5 +1,5 @@
 import { IconButton, useDisclosure } from '@chakra-ui/react';
-import { AddIcon } from 'components/global/CustomIcons';
+import { FaPlus } from 'react-icons/fa';
 import ItemModal from './ItemModal';
 
 const AddItemButton = () => {
@@ -7,7 +7,7 @@ const AddItemButton = () => {
 
   return (
     <>
-      <IconButton icon={<AddIcon />} aria-label="Add item" onClick={onOpen} />
+      <IconButton icon={<FaPlus />} aria-label="Add item" onClick={onOpen} />
       <ItemModal action="add" isOpen={isOpen} onClose={onClose} />
     </>
   );

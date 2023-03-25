@@ -1,18 +1,27 @@
 import { Link } from 'react-router-dom';
 import { Routes } from 'types/global.type';
-import { Heading, HStack, Stack } from '@chakra-ui/react';
+import {
+  Heading,
+  HStack,
+  Image,
+  Stack,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import useAuth from 'hooks/useAuth';
+import LogoDark from 'assets/logo-dark.png';
+import LogoLight from 'assets/logo-light.png';
 import ColorModeSwitcher from '../ColorModeSwitcher';
 import AuthButton from './subcomponents/AuthButton';
 import ProfileMenu from './subcomponents/ProfileMenu';
 
 const Header = () => {
   const { isLoggedIn } = useAuth();
+  const logo = useColorModeValue(LogoLight, LogoDark);
 
   return (
     <HStack h="80px" p="8" justify="space-between">
       <Heading>
-        <Link to={Routes.home}>BestBefore</Link>
+        <Link to={Routes.home}>{<Image src={logo} w="125px" h="61px" />}</Link>
       </Heading>
 
       <Stack
