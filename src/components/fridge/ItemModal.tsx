@@ -6,8 +6,9 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal';
-import { Formik } from 'formik';
+import { v4 as uuid } from 'uuid';
 import { useEffect } from 'react';
+import { Form, Formik } from 'formik';
 import { FridgeItem } from 'types/fridge.type';
 import { Button, Stack } from '@chakra-ui/react';
 import { updateFridgeItems } from 'redux/slices/fridge';
@@ -42,7 +43,9 @@ const ItemModal = ({ action, isOpen, item, onClose }: ItemModalProps) => {
       <ModalOverlay />
       <ModalContent textAlign="center" mx={['4', '0']}>
         <Formik
-          initialValues={item || { _id: '', name: '', quantity: 0, expiry: '' }}
+          initialValues={
+            item || { _id: uuid(), name: '', quantity: 0, expiry: '' }
+          }
           onSubmit={(values) => {
             upsertItem({
               fridgeId: fridges[0]._id,
@@ -51,29 +54,31 @@ const ItemModal = ({ action, isOpen, item, onClose }: ItemModalProps) => {
           }}
           validationSchema={addItemSchema}
         >
-          <ModalHeader>{`${isAdd ? 'Add' : 'Edit'} Item`}</ModalHeader>
+          <Form>
+            <ModalHeader>{`${isAdd ? 'Add' : 'Edit'} Item`}</ModalHeader>
 
-          <ModalBody>
-            <Stack spacing="4">
-              <FormInput name="name" label="Name" />
-              <FormInput name="quantity" label="Quantity" type="number" />
-              <FormInput name="expiry" label="Expiry Date" type="date" />
-            </Stack>
-          </ModalBody>
+            <ModalBody>
+              <Stack spacing="4">
+                <FormInput name="name" label="Name" />
+                <FormInput name="quantity" label="Quantity" type="number" />
+                <FormInput name="expiry" label="Expiry Date" type="date" />
+              </Stack>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button
-              mt="2"
-              w="100%"
-              colorScheme="green"
-              bg="green.500"
-              color="white"
-              type="submit"
-              isLoading={isLoading}
-            >
-              {isAdd ? 'Add' : 'Save changes'}
-            </Button>
-          </ModalFooter>
+            <ModalFooter>
+              <Button
+                mt="2"
+                w="100%"
+                colorScheme="green"
+                bg="green.500"
+                color="white"
+                type="submit"
+                isLoading={isLoading}
+              >
+                {isAdd ? 'Add' : 'Save changes'}
+              </Button>
+            </ModalFooter>
+          </Form>
         </Formik>
       </ModalContent>
     </Modal>

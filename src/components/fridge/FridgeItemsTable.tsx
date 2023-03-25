@@ -27,6 +27,7 @@ interface FridgeItemsTableProps {
 const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const { fridges } = useAppSelector((state) => state.fridge);
   const [deleteFridgeItems, { data: deleteData, isLoading: deleteLoading }] =
     useDeleteFridgeItemsMutation();
@@ -37,7 +38,11 @@ const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
       dispatch(updateFridgeItems(deleteData));
       setDeleteModalOpen(false);
     }
-  }, [data]);
+  }, [deleteData]);
+
+  useEffect(() => {
+    if (!editModalOpen && !deleteModalOpen) setActiveIndex(0);
+  }, [editModalOpen, deleteModalOpen]);
 
   const colsWithSort: string[] = ['expiry', 'quantity'];
 
@@ -101,8 +106,9 @@ const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
           ))}
         </Thead>
         <Tbody {...getTableBodyProps()}>
-          {rows?.map((row) => {
+          {rows?.map((row, index) => {
             prepareRow(row);
+            console.log(rows);
 
             return (
               <Tr {...row?.getRowProps()}>
@@ -116,13 +122,10 @@ const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
                   <IconButton
                     icon={<FaEdit />}
                     aria-label="Edit item"
-                    onClick={() => setEditModalOpen(true)}
-                  />
-                  <ItemModal
-                    action="edit"
-                    isOpen={editModalOpen}
-                    item={row.original}
-                    onClose={() => setEditModalOpen(false)}
+                    onClick={() => {
+                      setEditModalOpen(true);
+                      setActiveIndex(index);
+                    }}
                   />
                 </Td>
 
@@ -130,27 +133,37 @@ const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
                   <IconButton
                     icon={<FaTrash />}
                     aria-label="Delete item"
-                    onClick={() => setDeleteModalOpen(true)}
-                  />
-                  <ConfirmModal
-                    isOpen={deleteModalOpen}
-                    header="Delete Item?"
-                    warning="Items cannot be recovered once they have been deleted"
-                    isLoading={deleteLoading}
-                    colorScheme="red"
-                    cta="Delete"
-                    onClose={() => setDeleteModalOpen(false)}
-                    primaryAction={() =>
-                      deleteFridgeItems({
-                        fridgeId: fridges[0]._id,
-                        body: [row.original._id],
-                      })
-                    }
+                    onClick={() => {
+                      setDeleteModalOpen(true);
+                      setActiveIndex(index);
+                    }}
                   />
                 </Td>
               </Tr>
             );
           })}
+
+          <ItemModal
+            action="edit"
+            isOpen={editModalOpen}
+            item={rows[activeIndex]?.original}
+            onClose={() => setEditModalOpen(false)}
+          />
+          <ConfirmModal
+            isOpen={deleteModalOpen}
+            header="Delete Item?"
+            warning="Items cannot be recovered once they have been deleted"
+            isLoading={deleteLoading}
+            colorScheme="red"
+            cta="Delete"
+            onClose={() => setDeleteModalOpen(false)}
+            primaryAction={() =>
+              deleteFridgeItems({
+                fridgeId: fridges[0]._id,
+                body: [rows[activeIndex]?.original?._id],
+              })
+            }
+          />
         </Tbody>
       </Table>
     </TableContainer>
