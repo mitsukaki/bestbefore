@@ -12,7 +12,7 @@ interface ConfirmModalProps {
   isOpen: boolean;
   header: string;
   warning: string;
-  loading: boolean;
+  isLoading: boolean;
   colorScheme: string;
   cta: string;
   onClose: () => void;
@@ -23,7 +23,7 @@ function ConfirmModal({
   isOpen,
   header,
   colorScheme,
-  loading,
+  isLoading,
   warning,
   cta,
   onClose,
@@ -42,7 +42,7 @@ function ConfirmModal({
           <Button
             colorScheme={colorScheme}
             onClick={primaryAction}
-            isLoading={loading}
+            isLoading={isLoading}
           >
             {cta}
           </Button>

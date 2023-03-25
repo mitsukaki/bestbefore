@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import rootReducer from './rootReducer';
 import authApi from './services/auth';
+import fridgeApi from './services/fridge';
 
 let middleware: Middleware[] = [];
 
@@ -14,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => [
-    ...getDefaultMiddleware().concat(authApi.middleware),
+    ...getDefaultMiddleware().concat(authApi.middleware, fridgeApi.middleware),
     ...middleware,
   ],
 });

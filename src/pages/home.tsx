@@ -1,12 +1,14 @@
-import SEO from 'components/global/SEO';
-import AddItemContainer from 'containers/fridge/AddItem';
 import { Routes } from 'types/global.type';
+import SEO from 'components/global/SEO';
+import FridgeItemsContainer from 'containers/fridge/FridgeItems';
+import AddItemActionButtons from 'components/fridge/AddItemActionButtons';
 
 const HomePage = () => {
   return (
     <>
       <SEO prefix="Home" path={Routes.home} />
-      <AddItemContainer />
+      <AddItemActionButtons />
+      <FridgeItemsContainer />
     </>
   );
 };
