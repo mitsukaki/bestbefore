@@ -29,7 +29,7 @@ const useAuth = (): AuthHelpers => {
         user: user || null,
       }),
     );
-    dispatch(updateFridges({ fridges }));
+    dispatch(updateFridges({ fridges: fridges || [] }));
   }, []);
 
   const updateAuthState = (data: AuthResponse): void => {
