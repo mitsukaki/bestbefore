@@ -48,7 +48,7 @@ const ItemModal = ({ action, isOpen, item, onClose }: ItemModalProps) => {
           }
           onSubmit={(values) => {
             upsertItem({
-              fridgeId: fridges[0]._id,
+              fridgeId: fridges[0]?._id,
               body: [{ ...values, expiry: values.expiry || null }],
             });
           }}

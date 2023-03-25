@@ -12,7 +12,7 @@ const FridgeItemsContainer = () => {
 
   useEffect(() => {
     if (fridges[0]) {
-      fetchFridgeItems(fridges[0]._id);
+      fetchFridgeItems(fridges[0]?._id);
     }
   }, [fridges]);
 
@@ -27,7 +27,7 @@ const FridgeItemsContainer = () => {
       {isLoading ? (
         <Spinner colorScheme="green" />
       ) : (
-        <FridgeItemsTable data={fridges[0].items} />
+        <FridgeItemsTable data={fridges[0]?.items} />
       )}
     </>
   );

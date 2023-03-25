@@ -159,7 +159,7 @@ const FridgeItemsTable = ({ data }: FridgeItemsTableProps) => {
             onClose={() => setDeleteModalOpen(false)}
             primaryAction={() =>
               deleteFridgeItems({
-                fridgeId: fridges[0]._id,
+                fridgeId: fridges[0]?._id,
                 body: [rows[activeIndex]?.original?._id],
               })
             }
