@@ -1,59 +1,83 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+# BestBefore
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+The following contains the steps required to get the application up and running on your local workspace.
 
-### `yarn start`
+### Prerequisites
 
-Runs the app in the development mode.<br /> Open
-[http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Node v16.16.0
+- yarn v1.22.19
+- Git v2.37.1
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+### Running locally
 
-### `yarn test`
+To run the app locally, follow the steps below:
 
-Launches the test runner in the interactive watch mode.<br /> See the section
-about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+1. Clone the repository to your PC using your terminal. For more info, refer to this [article.](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
 
-### `yarn build`
+2. After cloning, navigate into the repo using the command:
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
-React in production mode and optimizes the build for the best performance.
+   ```
+   cd frontend
+   ```
 
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
+3. Install the dependencies in the package.json using the command:
 
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
+   ```
+   yarn install
+   ```
 
-### `yarn eject`
+4. After the dependencies have been installed successfully, create a .env file at the root. Take a look at the env.sample file and configure your environment variables with your values in the .env file.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+5. After adding the environment variables, run the app in your terminal using the command:
+   ```
+   yarn start
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
+## Writing Tests
 
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
+**NOTE:** All test files should have a `.test.ts` or `.test.tsx` file extension.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
+All tests for a component or utility function should be placed in a `__tests__` folder relative to the folder it resides in.
 
-## Learn More
+For example, if you had a `Header.tsx` file located in `src/components/Header`, and your tests are in a `header.test.tsx` file, do the following:
 
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Create a `__tests__` folder in the `src/components/Header` folder
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Move the `header.test.tsx` file to the `__tests__` folder
+
+The file structure would look similar to this:
+
+```
+.
+├── src
+│   └── components
+|       └── Header
+│           ├── Header.tsx
+│           └── __tests__
+│               └── header.test.tsx
+
+```
+
+## Running Tests
+
+To run tests, run the following command:
+
+```
+yarn test
+```
+
+## Running Tests Coverage
+
+To generate the coverage report for the tests, run the following command:
+
+```
+yarn test:coverage
+```
+
+## Git Hooks
+
+- **pre-commit**: Automatically formats the codebase using Prettier every time a git commit is made.
+
+- **pre-push**: Runs the unit test coverage and end-to-end tests when pushing to the remote repository.

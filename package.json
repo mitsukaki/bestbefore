@@ -2,10 +2,21 @@
   "name": "bestbefore",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test:interactive": "react-scripts test",
+    "test": "yarn test:interactive --watchAll=false",
+    "test:coverage": "yarn test --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
+    "format": "prettier --config .prettierrc src --write",
+    "prepare": "husky install && chmod ug+x .husky/*",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@chakra-ui/react": "^2.5.3",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^14.1.0",
@@ -13,22 +24,80 @@
     "@types/node": "^12.0.0",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "@types/react-helmet": "^6.1.6",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/redux-logger": "^3.0.9",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "framer-motion": "^6.2.9",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-helmet": "^6.1.0",
     "react-icons": "^3.0.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "redux-logger": "^3.0.6",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
   "eslintConfig": {
-    "extends": "react-app"
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "trailingComma": "all",
+          "arrowParens": "always",
+          "endOfLine": "auto"
+        }
+      ],
+      "no-console": [
+        "warn"
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,html,css,scss}": "yarn format"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "testMatch": [
+      "**/__tests__/*.test.ts",
+      "**/__tests__/*.test.tsx"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      ".type.ts",
+      ".d.ts",
+      "<rootDir>/src/index.tsx",
+      "<rootDir>/src/redux",
+      "<rootDir>/src/validators",
+      "<rootDir>/src/pages",
+      "<rootDir>/src/utils/auth.ts",
+      "<rootDir>/src/utils/config.ts",
+      "<rootDir>/src/utils/createTrial.ts",
+      "<rootDir>/src/utils/test.ts",
+      "<rootDir>/src/utils/workspace.tsx"
+    ]
   },
   "browserslist": {
     "production": [
