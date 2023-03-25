@@ -2,6 +2,7 @@ import { Middleware } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import rootReducer from './rootReducer';
+import authApi from './services/auth';
 
 let middleware: Middleware[] = [];
 
@@ -13,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => [
-    ...getDefaultMiddleware().concat(),
+    ...getDefaultMiddleware().concat(authApi.middleware),
     ...middleware,
   ],
 });
