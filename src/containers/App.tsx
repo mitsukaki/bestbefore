@@ -14,6 +14,7 @@ import LoginPage from 'pages/login';
 import SignUpPage from 'pages/signup';
 import Layout from 'components/global/Layout';
 import AboutPage from 'pages/about';
+import { protectedRoutes } from 'utils/global';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -24,7 +25,9 @@ const App = () => {
     if (typeof isLoggedIn !== 'boolean') return;
 
     const isAuthRoute = authRoutes.includes(location.pathname as Routes);
-    const isProtectedRoute = !isAuthRoute;
+    const isProtectedRoute = protectedRoutes.includes(
+      location.pathname as Routes,
+    );
 
     if (isLoggedIn && isAuthRoute) {
       navigate(Routes.home);
