@@ -8,13 +8,13 @@ import {
 } from 'react-router-dom';
 import { useEffect } from 'react';
 import { authRoutes } from 'utils/auth';
+import { protectedRoutes } from 'utils/global';
 import HomePage from 'pages/home';
 import useAuth from 'hooks/useAuth';
 import LoginPage from 'pages/login';
+import AboutPage from 'pages/about';
 import SignUpPage from 'pages/signup';
 import Layout from 'components/global/Layout';
-import AboutPage from 'pages/about';
-import { protectedRoutes } from 'utils/global';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -32,7 +32,7 @@ const App = () => {
     if (isLoggedIn && isAuthRoute) {
       navigate(Routes.home);
     } else if (!isLoggedIn && isProtectedRoute) {
-      navigate(Routes.login);
+      navigate(Routes.aboutUs);
     }
   }, [isLoggedIn, location]);
 

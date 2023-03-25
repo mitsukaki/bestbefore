@@ -4,7 +4,9 @@ import {
   Heading,
   HStack,
   Image,
+  Link as ChakraLink,
   Stack,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import useAuth from 'hooks/useAuth';
@@ -24,26 +26,30 @@ const Header = () => {
         <Link to={Routes.home}>{<Image src={logo} w="125px" h="61px" />}</Link>
       </Heading>
 
-      <Stack
-        align="center"
-        spacing="2"
-        justify="space-between"
-        mt={['2', '4', '0']}
-        direction={['column', 'row', 'row']}
-      >
-        <ColorModeSwitcher />
+      <HStack>
+        <ChakraLink as={Link} to={Routes.aboutUs} fontSize="md">
+          <Text word-wrap="unset">About Us</Text>
+        </ChakraLink>
 
-        {isLoggedIn ? (
-          <ProfileMenu />
-        ) : (
-          <>
-            <AuthButton type="login" />
-            <AuthButton type="signUp" />
-          </>
-        )}
+        <Stack
+          align="center"
+          spacing="2"
+          justify="space-between"
+          mt={['2', '4', '0']}
+          direction={['column', 'row', 'row']}
+        >
+          <ColorModeSwitcher />
 
-        <Link to={Routes.aboutUs}>About Us</Link>
-      </Stack>
+          {isLoggedIn ? (
+            <ProfileMenu />
+          ) : (
+            <>
+              <AuthButton type="login" />
+              <AuthButton type="signUp" />
+            </>
+          )}
+        </Stack>
+      </HStack>
     </HStack>
   );
 };
