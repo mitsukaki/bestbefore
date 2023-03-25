@@ -104,7 +104,6 @@ const ScanReceiptButton = () => {
           bottom="0"
           opacity="0"
           cursor="pointer"
-          isDisabled={uploadLoading}
         />
       </Box>
 
